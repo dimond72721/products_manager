@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<h1>Product manager</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% for msg in messages %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+{% endwith %}
+
+<h3>Add product:</h3>
+
+<form method="POST">
+    <input type="text" name="title" placeholder="Title">
+    <input type="number" name="price" placeholder="Price">
+    <input type="text" name="category" placeholder="Category">
+
+    <button type="submit">Add</button>
+</form>
+
+<h3>Products:</h3>
+
+<table border="1" cellpadding="5">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for title, info in products.items() %}
+        <tr>
+            <td>{{ title }}</td>
+            <td>{{ info['price'] }}</td>
+            <td>{{ info['category'] }}</td>
+
+            <td>
+                <a href="{{ url_for('edit', name_product=title) }}">
+                    <button type="button">Edit</button>
+                </a>
+
+                <a href="{{ url_for('delete', name_product=title) }}">
+                    <button type="button">Delete</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+</body>
+</html>
