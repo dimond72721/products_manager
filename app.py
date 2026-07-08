@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
+from action_db import delete_product, edit_product
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -38,10 +40,10 @@ def edit(name_product):
         flash('Product not found!')
         return redirect(url_for('products'))
 
-    if request.method == 'POST':
-        product['price'] = float(request.form.get('price'))
-        product['category'] = request.form.get('category')
-
+   price = float(request.form.get('price'))
+category = request.form.get('category')
+if request.method == 'POST':
+edit_product(name_product, price, category)
         flash('Товар оновлено!')
         return redirect(url_for('products'))
 
@@ -60,4 +62,25 @@ def delete(name_product):
     return redirect(url_for('products'))
 
 
-app.run(debug=True)
+@app.route('/edit/<name_product>', methods=['GET', 'POST'])
+def edit(name_product):
+    product = all_products.get(name_product)
+
+    if request.method == 'POST':
+        price = float(request.form.get('price'))
+        category = request.form.get('category')
+
+        product['price'] = price
+        product['category'] = category
+
+        flash('Товар оновлено!')
+        return redirect(url_for('products'))
+
+    return render_template(
+        'edit.html',
+        name=name_product,
+        product=product
+    )
+
+if __name__ == '__main__':
+    app.run(debug=True)
