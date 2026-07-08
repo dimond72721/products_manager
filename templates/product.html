@@ -6,6 +6,25 @@
 </head>
 <body>
 
+ {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.category }}</td>
+
+        <td>
+            <a href="{{ url_for('edit', name_product=product.name) }}">
+                <button type="button">Edit</button>
+            </a>
+
+            <a href="{{ url_for('delete', name_product=product.name) }}">
+                <button type="button">Delete</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+    
 <h1>Product manager</h1>
 
 {% with messages = get_flashed_messages() %}
