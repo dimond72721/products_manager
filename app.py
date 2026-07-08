@@ -41,10 +41,10 @@ def edit(name_product):
         price = float(request.form.get('price'))
         category = request.form.get('category')
 
-        # обновление в БД
+        
         edit_product(name_product, price, category)
 
-        # обновление словаря
+        
         product['price'] = price
         product['category'] = category
 
@@ -60,10 +60,10 @@ def edit(name_product):
 
 @app.route('/delete/<name_product>')
 def delete(name_product):
-    # удаление из БД
+    
     delete_product(name_product)
 
-    # удаление из словаря
+    
     all_products.pop(name_product, None)
 
     flash(f'Product {name_product} was deleted!')
