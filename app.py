@@ -40,10 +40,10 @@ def edit(name_product):
         flash('Product not found!')
         return redirect(url_for('products'))
 
-    if request.method == 'POST':
-        product['price'] = float(request.form.get('price'))
-        product['category'] = request.form.get('category')
+   price = float(request.form.get('price'))
+category = request.form.get('category')
 
+edit_product(name_product, price, category)
         flash('Товар оновлено!')
         return redirect(url_for('products'))
 
