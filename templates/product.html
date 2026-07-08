@@ -6,25 +6,6 @@
 </head>
 <body>
 
- {% for product in products %}
-    <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.category }}</td>
-
-        <td>
-            <a href="{{ url_for('edit', name_product=product.name) }}">
-                <button type="button">Edit</button>
-            </a>
-
-            <a href="{{ url_for('delete', name_product=product.name) }}">
-                <button type="button">Delete</button>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
-    
 <h1>Product manager</h1>
 
 {% with messages = get_flashed_messages() %}
@@ -36,9 +17,9 @@
 <h3>Add product:</h3>
 
 <form method="POST">
-    <input type="text" name="title" placeholder="Title">
-    <input type="number" name="price" placeholder="Price">
-    <input type="text" name="category" placeholder="Category">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="number" step="0.01" name="price" placeholder="Price" required>
+    <input type="text" name="category" placeholder="Category" required>
 
     <button type="submit">Add</button>
 </form>
@@ -57,18 +38,18 @@
     </thead>
 
     <tbody>
-        {% for title, info in products.items() %}
+        {% for product in products %}
         <tr>
-            <td>{{ title }}</td>
-            <td>{{ info['price'] }}</td>
-            <td>{{ info['category'] }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
 
             <td>
-                <a href="{{ url_for('edit', name_product=title) }}">
+                <a href="{{ url_for('edit', name_product=product.name) }}">
                     <button type="button">Edit</button>
                 </a>
 
-                <a href="{{ url_for('delete', name_product=title) }}">
+                <a href="{{ url_for('delete', name_product=product.name) }}">
                     <button type="button">Delete</button>
                 </a>
             </td>
