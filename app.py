@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-from action_db import delete_product, update_product
+from action_db import delete_product, edit_product
 
 
 app = Flask(__name__)
@@ -42,7 +42,7 @@ def edit(name_product):
 
    price = float(request.form.get('price'))
 category = request.form.get('category')
-
+if request.method == 'POST':
 edit_product(name_product, price, category)
         flash('Товар оновлено!')
         return redirect(url_for('products'))
@@ -69,8 +69,6 @@ def edit(name_product):
     if request.method == 'POST':
         price = float(request.form.get('price'))
         category = request.form.get('category')
-
-        update_product(name_product, price, category)
 
         product['price'] = price
         product['category'] = category
