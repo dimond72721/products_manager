@@ -62,8 +62,6 @@ def delete(name_product):
     return redirect(url_for('products'))
 
 
-app.run(debug=True)
-
 @app.route('/edit/<name_product>', methods=['GET', 'POST'])
 def edit(name_product):
     product = all_products.get(name_product)
@@ -96,4 +94,5 @@ def delete(name_product):
 
     return redirect(url_for('products'))
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
