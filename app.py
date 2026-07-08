@@ -84,15 +84,5 @@ def edit(name_product):
         product=product
     )
 
-@app.route('/delete/<name_product>')
-def delete(name_product):
-    delete_product(name_product)
-
-    all_products.pop(name_product, None)
-
-    flash(f'Product {name_product} was deleted!')
-
-    return redirect(url_for('products'))
-
 if __name__ == '__main__':
     app.run(debug=True)
