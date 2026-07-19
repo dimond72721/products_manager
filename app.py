@@ -31,25 +31,6 @@ def products():
 
     return render_template('product.html', products=all_products)
 
-@app.route('/edit/<name_product>', methods=['GET', 'POST'])
-def edit(name_product):
-    product = all_products.get(name_product)
-
-    if product is None:
-        flash('Product not found!')
-        return redirect(url_for('products'))
-
-
-        flash('Товар оновлено!')
-        return redirect(url_for('products'))
-
-    return render_template(
-        'edit.html',
-        name=name_product,
-        product=product
-    )
-
-
 @app.route('/delete/<name_product>')
 def delete(name_product):
     all_products.pop(name_product)
