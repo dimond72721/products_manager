@@ -31,7 +31,6 @@ def products():
 
     return render_template('product.html', products=all_products)
 
-
 @app.route('/edit/<name_product>', methods=['GET', 'POST'])
 def edit(name_product):
     product = all_products.get(name_product)
@@ -40,10 +39,7 @@ def edit(name_product):
         flash('Product not found!')
         return redirect(url_for('products'))
 
-   price = float(request.form.get('price'))
-category = request.form.get('category')
-if request.method == 'POST':
-edit_product(name_product, price, category)
+
         flash('Товар оновлено!')
         return redirect(url_for('products'))
 
