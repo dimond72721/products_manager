@@ -22,35 +22,31 @@
 
         <h1>Редагування товару</h1>
 
-      <form method="post" class="product-form">
+    <form method="post" class="product-form">
 
-            <div class="form-group">
-                <label for="name">Назва товару</label>
-                <input type="text" id="name" name="name" required>
-            </div>
+    <div class="form-group">
+        <label for="name">Назва товару</label>
+        <input type="text" id="name" name="name" value="{{ name }}" readonly>
+    </div>
 
-            <div class="form-group">
-                <label for="price">Ціна</label>
-                <input type="number" id="price" name="price" required>
-            </div>
+    <div class="form-group">
+        <label for="price">Ціна</label>
+        <input type="number" id="price" name="price" value="{{ product.price }}" required>
+    </div>
 
-            <div class="form-group">
-                <label for="description">Опис</label>
-                <textarea id="description" name="description" rows="5"></textarea>
-            </div>
+    <div class="form-group">
+        <label for="category">Категорія</label>
+        <textarea id="category" name="category" rows="5">{{ product.category }}</textarea>
+    </div>
 
-            <button type="submit" class="btn">
-                Зберегти
-            </button>
+    <button type="submit" class="btn">
+        Зберегти
+    </button>
 
-        </form>
+</form>
 
     </div>
-    <input type="text" id="name" name="name" value="{{ name }}" readonly>
-
-<input type="number" id="price" name="price" value="{{ product.price }}" required>
-
-<textarea  name="category" rows="5">{{ product.category }}</textarea>
+  
 </main>
 
 </body>
