@@ -12,7 +12,7 @@
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="index.html">Product Manager</a>
+            <a href="{{ url_for('products') }}">Product Manager</a>
         </div>
     </div>
 </header>
@@ -22,7 +22,7 @@
 
         <h1>Редагування товару</h1>
 
-        <form action="#" method="post" class="product-form">
+      <form method="post" class="product-form">
 
             <div class="form-group">
                 <label for="name">Назва товару</label>
@@ -46,6 +46,11 @@
         </form>
 
     </div>
+    <input type="text" id="name" name="name" value="{{ name }}" readonly>
+
+<input type="number" id="price" name="price" value="{{ product.price }}" required>
+
+<textarea  name="category" rows="5">{{ product.category }}</textarea>
 </main>
 
 </body>
